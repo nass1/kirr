@@ -2,23 +2,18 @@
 from __future__ import unicode_literals
 
 from django.db import models
-import random
-import string
-
-def code_genrator(size=6, chars=string.ascii_lowercase + string.digits):
-    return ''.join(random.choice(chars) for _ in range(size))
-
+from .utils import code_genrator, create_shortcode
 
 
 class KirrURL(models.Model):
     url = models.CharField(max_length=220, )
-    shortcode = models.CharField(max_length=15, unique=True)
+    shortcode = models.CharField(max_length=15, unique=True, blank=True)
     updated = models.DateTimeField(auto_now=True)
     timestamp = models.DateTimeField(auto_now=True)
 
     def save(self, *args, **kwargs):
-        print ("something")
-        self.shortcode = code_genrator()
+        if self.shortcode is None or self.shortcode == "":
+            self.shortcode = code_genrator(self)
         super (KirrURL, self).save(*args, **kwargs)
 
 
