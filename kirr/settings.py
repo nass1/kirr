@@ -25,7 +25,7 @@ SECRET_KEY = '8)el)l#p$$((kcd6fr%f89l+%fnti2o=##eken3k=91%lfy_#-'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['hl7jmtfg.apps.lair.io']
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'shortener',
 ]
 
 MIDDLEWARE = [
